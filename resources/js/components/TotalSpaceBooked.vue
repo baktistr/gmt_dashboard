@@ -2,7 +2,7 @@
   <div class="card card-accent-danger">
     <div class="card-body pb-0">
       <div class="text-value-lg">9.823</div>
-      <div>Total Space Booked</div>
+      <div>{{ title }}</div>
     </div>
     <div class="c-chart-wrapper mt-3 mx-3" style="height:133px;">
       <canvas class="chart" id="total-space-booked-chart" height="70"></canvas>
@@ -14,6 +14,13 @@
   import Chart from 'chart.js';
 
   export default {
+    props: {
+      title: {
+        type: String,
+        default: 'Total Space Booked'
+      }
+    },
+
     mounted() {
       new Chart(document.getElementById('total-space-booked-chart'), {
         type: 'bar',

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BuildingController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TregController;
 use Illuminate\Support\Facades\Route;
@@ -29,4 +30,4 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/treg/{treg}', [TregController::class, 'show'])->name('treg.show');
 
-Route::get('/building/{building}', function () {})->name('building.show');
+Route::get('/building/{building}', [BuildingController::class, 'show'])->name('building.show');

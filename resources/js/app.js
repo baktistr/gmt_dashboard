@@ -21,6 +21,7 @@ import BuildingList from "./components/treg/BuildingList";
 import TotalUser from "./components/TotalUser";
 import TotalSpaceBooked from "./components/TotalSpaceBooked";
 import CommercialSpace from "./components/CommercialSpace";
+import GaugeChart from "./components/GaugeChart";
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -37,6 +38,7 @@ const app = new Vue({
     BuildingList,
     TotalUser,
     TotalSpaceBooked,
-    CommercialSpace
+    CommercialSpace,
+    GaugeChart
   }
 });
