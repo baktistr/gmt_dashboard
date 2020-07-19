@@ -25,7 +25,7 @@ class TelkomRegional extends Model
      */
     public function areas(): HasMany
     {
-        return $this->hasMany(Area::class, 'witel_id');
+        return $this->hasMany(Area::class, 'area_id');
     }
 
     /**

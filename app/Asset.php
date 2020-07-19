@@ -6,14 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Laravel\Nova\Actions\Actionable;
-use Spatie\Image\Manipulations;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Asset extends Model implements HasMedia
+class Asset extends Model
 {
-    use Actionable, SoftDeletes, InteractsWithMedia;
+    use SoftDeletes;
 
     /**
      * {@inheritDoc}
@@ -38,6 +34,16 @@ class Asset extends Model implements HasMedia
     public function getFormattedPriceAttribute()
     {
         return 'Rp.' . number_format($this->price);
+    }
+
+    /**
+     * get formatted building code.
+     *
+     * @return string
+     */
+    public function getFormattedBuildingCodeAttribute()
+    {
+        return "{$this->area->code}-{$this->building_code}";
     }
 
     /**
@@ -159,20 +165,5 @@ class Asset extends Model implements HasMedia
     public function insurances(): HasMany
     {
         return $this->hasMany(Insurance::class, 'asset_id');
-    }
-
-    /**
-     * Register the media collections
-     */
-    public function registerMediaCollections(): void
-    {
-        $this->addMediaCollection('image')
-            ->onlyKeepLatest(10)
-            ->registerMediaConversions(function () {
-                $this->addMediaConversion('thumbnail')
-                    ->fit(Manipulations::FIT_CROP, 160, 105)
-                    ->performOnCollections('image')
-                    ->nonQueued();
-            });
     }
 }
