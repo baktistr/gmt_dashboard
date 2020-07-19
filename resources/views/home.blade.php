@@ -3,73 +3,78 @@
 @section('content')
     <div class="container-fluid">
         <div class="row">
-            <div class="col">
-                <div class="card text-white bg-gradient-danger">
-                    <div class="card-body">
-                        <div class="text-muted text-right mb-4">
-                            <svg class="c-icon c-icon-2xl">
-                                <use xlink:href="assets/icons/coreui/free-symbol-defs.svg#cui-globe-alt"></use>
-                            </svg>
-                        </div>
-                        <div class="text-value-lg">{{ $tregList->count() }}</div>
-                        <small class="text-muted text-uppercase font-weight-bold">Total Regionals</small>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card text-white bg-primary">
-                    <div class="card-body">
-                        <div class="text-muted text-right mb-4">
-                            <svg class="c-icon c-icon-2xl">
-                                <use xlink:href="assets/icons/coreui/free-symbol-defs.svg#cui-map"></use>
-                            </svg>
-                        </div>
-                        <div class="text-value-lg">385</div>
-                        <small class="text-muted text-uppercase font-weight-bold">Total Area</small>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card text-white bg-info">
-                    <div class="card-body">
-                        <div class="text-muted text-right mb-4">
-                            <svg class="c-icon c-icon-2xl">
-                                <use xlink:href="assets/icons/coreui/free-symbol-defs.svg#cui-building"></use>
-                            </svg>
-                        </div>
-                        <div class="text-value-lg">87.500</div>
-                        <small class="text-muted text-uppercase font-weight-bold">Total Buildings</small>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card text-white bg-success">
-                    <div class="card-body">
-                        <div class="text-muted text-right mb-4">
-                            <svg class="c-icon c-icon-2xl">
-                                <use xlink:href="assets/icons/coreui/free-symbol-defs.svg#cui-room"></use>
-                            </svg>
-                        </div>
-                        <div class="text-value-lg">385</div>
-                        <small class="text-muted text-uppercase font-weight-bold">Total Spaces</small>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
             <div class="col-sm-6">
                 <treg-chart></treg-chart>
             </div>
             <div class="col">
                 <div class="row">
+                    <div class="col-sm-6">
+                        <div class="card text-white bg-gradient-danger">
+                            <div class="card-body">
+                                <div class="text-muted text-right mb-4">
+                                    <svg class="c-icon c-icon-2xl">
+                                        <use xlink:href="assets/icons/coreui/free-symbol-defs.svg#cui-globe-alt"></use>
+                                    </svg>
+                                </div>
+                                <div class="text-value-lg">{{ $tregList->count() }}</div>
+                                <small class="text-muted text-uppercase font-weight-bold">Total Regionals</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="card text-white bg-primary">
+                            <div class="card-body">
+                                <div class="text-muted text-right mb-4">
+                                    <svg class="c-icon c-icon-2xl">
+                                        <use xlink:href="assets/icons/coreui/free-symbol-defs.svg#cui-map"></use>
+                                    </svg>
+                                </div>
+                                <div class="text-value-lg">385</div>
+                                <small class="text-muted text-uppercase font-weight-bold">Total Area</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="card text-white bg-info">
+                            <div class="card-body">
+                                <div class="text-muted text-right mb-4">
+                                    <svg class="c-icon c-icon-2xl">
+                                        <use xlink:href="assets/icons/coreui/free-symbol-defs.svg#cui-building"></use>
+                                    </svg>
+                                </div>
+                                <div class="text-value-lg">87.500</div>
+                                <small class="text-muted text-uppercase font-weight-bold">Total Buildings</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="card text-white bg-success">
+                            <div class="card-body">
+                                <div class="text-muted text-right mb-4">
+                                    <svg class="c-icon c-icon-2xl">
+                                        <use xlink:href="assets/icons/coreui/free-symbol-defs.svg#cui-room"></use>
+                                    </svg>
+                                </div>
+                                <div class="text-value-lg">385</div>
+                                <small class="text-muted text-uppercase font-weight-bold">Total Spaces</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="row">
                     <div class="col">
                         <total-user></total-user>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col">
                         <total-space-booked></total-space-booked>
                     </div>
+                </div>
+                <div class="row">
+                    <witel-chart></witel-chart>
                 </div>
             </div>
             <div class="col">
@@ -118,11 +123,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <witel-chart></witel-chart>
             </div>
         </div>
     </div>
