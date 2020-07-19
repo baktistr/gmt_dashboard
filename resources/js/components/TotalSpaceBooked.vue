@@ -4,7 +4,7 @@
       <div class="text-value-lg">9.823</div>
       <div>Total Space Booked</div>
     </div>
-    <div class="c-chart-wrapper mt-3 mx-3" style="height:100px;">
+    <div class="c-chart-wrapper mt-3 mx-3" style="height:133px;">
       <canvas class="chart" id="total-space-booked-chart" height="70"></canvas>
     </div>
   </div>
