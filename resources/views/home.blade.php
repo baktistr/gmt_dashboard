@@ -64,7 +64,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col">
+            <div class="col-sm-5">
                 <div class="row">
                     <div class="col">
                         <total-user></total-user>
@@ -73,11 +73,6 @@
                         <total-space-booked></total-space-booked>
                     </div>
                 </div>
-                <div class="row">
-                    <witel-chart></witel-chart>
-                </div>
-            </div>
-            <div class="col">
                 <div class="row">
                     <div class="col">
                         <div class="card">
@@ -109,20 +104,23 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="text-value-lg">760</div>
-                                <div>Total Spaces Booked</div>
-                                <div class="progress progress-xs my-2">
-                                    <div class="progress-bar bg-info" role="progressbar" style="width: 90%" aria-valuenow="90"
-                                         aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="text-value-lg">760</div>
+                                    <div>Total Spaces Booked</div>
+                                    <div class="progress progress-xs my-2">
+                                        <div class="progress-bar bg-info" role="progressbar" style="width: 90%" aria-valuenow="90"
+                                             aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <small class="text-muted">90% from total available spaces</small>
                                 </div>
-                                <small class="text-muted">90% from total available spaces</small>
                             </div>
                         </div>
                     </div>
-                </div>
+            </div>
+            <div class="col">
+                <witel-chart></witel-chart>
             </div>
         </div>
     </div>
