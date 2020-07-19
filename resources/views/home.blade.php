@@ -121,7 +121,9 @@
             </div>
         </div>
         <div class="row">
-
+            <div class="col">
+                <witel-chart></witel-chart>
+            </div>
         </div>
     </div>
 @endsection

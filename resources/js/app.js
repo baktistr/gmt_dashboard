@@ -13,6 +13,7 @@ window.Vue = require('vue');
 
 // Dashboard components...
 import TregChart from "./components/dashboard/TregChart";
+import WitelChart from "./components/dashboard/WitelChart";
 
 import TotalUser from "./components/TotalUser";
 import TotalSpaceBooked from "./components/TotalSpaceBooked";
@@ -28,6 +29,7 @@ const app = new Vue({
 
   components: {
     TregChart,
+    WitelChart,
     TotalUser,
     TotalSpaceBooked
   }
