@@ -15,6 +15,7 @@ window.Vue = require('vue');
 import TregChart from "./components/dashboard/TregChart";
 
 import TotalUser from "./components/TotalUser";
+import TotalSpaceBooked from "./components/TotalSpaceBooked";
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -27,6 +28,7 @@ const app = new Vue({
 
   components: {
     TregChart,
-    TotalUser
+    TotalUser,
+    TotalSpaceBooked
   }
 });
