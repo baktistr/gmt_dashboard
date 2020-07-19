@@ -20,6 +20,7 @@ import BuildingList from "./components/treg/BuildingList";
 
 import TotalUser from "./components/TotalUser";
 import TotalSpaceBooked from "./components/TotalSpaceBooked";
+import CommercialSpace from "./components/CommercialSpace";
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -35,6 +36,7 @@ const app = new Vue({
     WitelChart,
     BuildingList,
     TotalUser,
-    TotalSpaceBooked
+    TotalSpaceBooked,
+    CommercialSpace
   }
 });

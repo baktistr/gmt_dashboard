@@ -1,5 +1,5 @@
 <template>
-  <div class="card text-white bg-danger">
+  <div class="card card-accent-danger">
     <div class="card-body pb-0">
       <div class="text-value-lg">9.823</div>
       <div>Total Space Booked</div>
@@ -22,8 +22,7 @@
           datasets: [
             {
               label: 'Total users',
-              backgroundColor: 'rgba(255,255,255,.2)',
-              borderColor: 'rgba(255,255,255,.55)',
+              backgroundColor: 'rgb(255,97,97)',
               data: [1, 18, 9, 17, 34, 22, 11, 10, 87, 23]
             }
           ]

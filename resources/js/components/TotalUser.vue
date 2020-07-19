@@ -1,5 +1,5 @@
 <template>
-  <div class="card text-white bg-success">
+  <div class="card card-accent-success">
     <div class="card-body pb-0">
       <div class="text-value-lg">9.823</div>
       <div>Total Users</div>
@@ -16,16 +16,14 @@
   export default {
     mounted() {
       new Chart(document.getElementById('total-user-chart'), {
-        type: 'line',
+        type: 'bar',
         data: {
-          labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+          labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October'],
           datasets: [
             {
               label: 'Total users',
-              backgroundColor: 'transparent',
-              borderColor: 'rgba(255,255,255,.55)',
-              pointBackgroundColor: window.coreuiUtils.getStyle('--success'),
-              data: [1, 18, 9, 17, 34, 22, 11]
+              backgroundColor: 'rgb(46,184,92)',
+              data: [1, 18, 9, 17, 34, 22, 11, 16, 21, 3]
             }
           ]
         },

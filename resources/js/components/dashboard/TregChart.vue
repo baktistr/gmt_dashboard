@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="card card-accent-info">
     <div class="card-header">
       Telkom Regional
     </div>
