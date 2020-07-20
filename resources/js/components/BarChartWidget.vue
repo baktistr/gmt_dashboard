@@ -1,7 +1,7 @@
 <template>
   <div :class="`card card-accent-${color}`">
     <div class="card-body pb-0">
-      <div class="text-value-lg">{{ data.pop() }}</div>
+      <div class="text-value-lg">{{ data[11] }}</div>
       <div>{{ title }}</div>
     </div>
     <div class="c-chart-wrapper mt-3 mx-3">

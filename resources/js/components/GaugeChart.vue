@@ -1,7 +1,7 @@
 <template>
   <div class="card card-accent-primary">
     <div class="card-header">{{ title }}</div>
-    <div class="card-body p-2">
+    <div class="card-body">
       <canvas :id="chartId"></canvas>
     </div>
   </div>
@@ -36,7 +36,7 @@
       },
       bgColor: {
         type: Array,
-        default: () => ['green', 'orange', 'red']
+        default: () => ['#27ae60', '#f1c40f', '#e74c3c']
       }
     },
 

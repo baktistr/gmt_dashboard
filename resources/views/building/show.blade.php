@@ -81,7 +81,7 @@
             <div class="col-sm-6">
                 <div class="row">
                     <div class="col-sm-6">
-                        <div class="card card-accent-success text-success">
+                        <div class="card card-accent-primary text-success">
                             <div class="card-body">
                                 <div class="text-muted text-right position-absolute mr-4" style="right: 0">
                                     <svg class="c-icon c-icon-2xl text-success">
@@ -112,7 +112,9 @@
                             chart-id="space-available"
                             :labels='@json($months)'
                             :data='@json($barData->shuffle()->all())'
-                            bar-color="blue"
+                            color="primary"
+                            bar-color="#2ecc71"
+                            :height="100"
                         ></bar-chart-widget>
                     </div>
                     <div class="col-sm-6">
@@ -121,6 +123,31 @@
                             chart-id="space-booked"
                             :labels='@json($months)'
                             :data='@json($barData->shuffle()->all())'
+                            color="primary"
+                            bar-color="#3498db"
+                            :height="100"
+                        ></bar-chart-widget>
+                    </div>
+                    <div class="col-sm-6">
+                        <bar-chart-widget
+                            title="Space Unavailable"
+                            chart-id="space-unavailable"
+                            :labels='@json($months)'
+                            :data='@json($barData->shuffle()->all())'
+                            color="primary"
+                            bar-color="#e74c3c"
+                            :height="100"
+                        ></bar-chart-widget>
+                    </div>
+                    <div class="col-sm-6">
+                        <bar-chart-widget
+                            title="Total Users"
+                            chart-id="total-users"
+                            :labels='@json($months)'
+                            :data='@json($barData->shuffle()->all())'
+                            color="primary"
+                            bar-color="#9b59b6"
+                            :height="100"
                         ></bar-chart-widget>
                     </div>
                 </div>
@@ -158,7 +185,7 @@
                         Insurance
                     </div>
                     <div class="card-body">
-                        <p class="text-center mb-0">
+                        <p class="text-center mb-2">
                             @if(true)
                                 <i class="cil-check-circle display-1 text-success"></i>
                             @else
@@ -171,10 +198,3 @@
         </div>
     </div>
 @endsection
-<script>
-  import GaugeChart from "../../js/components/GaugeChart";
-  import BarChartWidget from "../../js/components/BarChartWidget";
-  export default {
-    components: {BarChartWidget, GaugeChart}
-  }
-</script>
