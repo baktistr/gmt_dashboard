@@ -15,6 +15,7 @@
         'November',
         'December',
     );
+    $barData = collect([1, 18, 9, 17, 34, 22, 11, 10, 87, 23, 50, 43]);
 @endphp
 
 @section('content')
@@ -106,15 +107,22 @@
                         </div>
                     </div>
                     <div class="col-sm-6">
-                        <total-user title="App Mobile Users"></total-user>
+                        <bar-chart-widget
+                            title="Space Available"
+                            chart-id="space-available"
+                            :labels='@json($months)'
+                            :data='@json($barData->shuffle()->all())'
+                            bar-color="blue"
+                        ></bar-chart-widget>
                     </div>
                     <div class="col-sm-6">
-                        <total-space-booked title="Space Booked"></total-space-booked>
+                        <bar-chart-widget
+                            title="Space Booked"
+                            chart-id="space-booked"
+                            :labels='@json($months)'
+                            :data='@json($barData->shuffle()->all())'
+                        ></bar-chart-widget>
                     </div>
-                    <div class="col-sm-6">
-{{--                        <gauge-chart></gauge-chart>--}}
-                    </div>
-                    <div class="col-sm-6"></div>
                 </div>
             </div>
         </div>
@@ -165,7 +173,8 @@
 @endsection
 <script>
   import GaugeChart from "../../js/components/GaugeChart";
+  import BarChartWidget from "../../js/components/BarChartWidget";
   export default {
-    components: {GaugeChart}
+    components: {BarChartWidget, GaugeChart}
   }
 </script>

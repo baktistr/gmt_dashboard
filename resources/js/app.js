@@ -22,6 +22,7 @@ import TotalUser from "./components/TotalUser";
 import TotalSpaceBooked from "./components/TotalSpaceBooked";
 import CommercialSpace from "./components/CommercialSpace";
 import GaugeChart from "./components/GaugeChart";
+import BarChartWidget from "./components/BarChartWidget";
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -40,5 +41,6 @@ const app = new Vue({
     TotalSpaceBooked,
     CommercialSpace,
     GaugeChart,
+    BarChartWidget
   }
 });
