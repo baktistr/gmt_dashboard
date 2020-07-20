@@ -120,6 +120,31 @@
         </div>
         <div class="row">
             <div class="col-sm-3">
+                <gauge-chart
+                    chart-id="electricity-consumption"
+                    title="Electricity Consumption"
+                    unit="KWh"
+                    :value="35000"
+                ></gauge-chart>
+            </div>
+            <div class="col-sm-3">
+                <gauge-chart
+                    chart-id="water-consumption"
+                    title="Water Consumption"
+                    unit="m3"
+                    :value="12000"
+                ></gauge-chart>
+            </div>
+            <div class="col-sm-3">
+                <gauge-chart
+                    chart-id="fuel-consumption"
+                    title="Fuel Consumption"
+                    unit="liter"
+                    :value="300"
+                    :data='@json([600, 850, 1000])'
+                ></gauge-chart>
+            </div>
+            <div class="col-sm-3">
                 <div class="card card-accent-primary">
                     <div class="card-header">
                         Insurance
@@ -135,9 +160,6 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-3"></div>
-            <div class="col-sm-3"></div>
-            <div class="col-sm-3"></div>
         </div>
     </div>
 @endsection

@@ -1,21 +1,42 @@
 <template>
   <div class="card card-accent-primary">
     <div class="card-header">{{ title }}</div>
-    <div class="card-body">
-      <canvas id="chart"></canvas>
+    <div class="card-body p-2">
+      <canvas :id="chartId"></canvas>
     </div>
   </div>
 </template>
 
 <script>
   import Chart from 'chart.js';
-  import GaugeChart from 'chartjs-gauge';
+
+  require('chartjs-gauge');
 
   export default {
     props: {
+      chartId: {
+        type: String,
+        required: true
+      },
       title: {
         type: String,
         default: 'Gauge Chart'
+      },
+      unit: {
+        type: String,
+        required: true
+      },
+      data: {
+        type: Array,
+        default: () => [60000, 85000, 100000]
+      },
+      value: {
+        type: Number,
+        default: 0
+      },
+      bgColor: {
+        type: Array,
+        default: () => ['green', 'orange', 'red']
       }
     },
 
@@ -25,31 +46,18 @@
           type: 'gauge',
           data: {
             datasets: [{
-              data: this.randomData(),
-              value: this.randomValue(),
-              backgroundColor: ['orange'],
-              borderWidth: 2
+              data: this.data,
+              value: this.value,
+              backgroundColor: this.bgColor,
+              borderWidth: 1
             }]
           },
           options: {
             responsive: true,
-            layout: {
-              padding: {
-                bottom: 30
-              }
-            },
-            needle: {
-              // Needle circle radius as the percentage of the chart area width
-              radiusPercentage: 2,
-              // Needle width as the percentage of the chart area width
-              widthPercentage: 3.2,
-              // Needle length as the percentage of the interval between inner radius (0%) and outer radius (100%) of the arc
-              lengthPercentage: 80,
-              // The color of the needle
-              color: 'rgba(0, 0, 0, 1)'
-            },
             valueLabel: {
-              formatter: Math.round
+              formatter: (value) => {
+                return `${this.numberFormat(value)} ${this.unit}`
+              }
             }
           }
         }
@@ -57,24 +65,13 @@
     },
 
     mounted() {
-      let ctx = document.getElementById('chart').getContext('2d');
+      let ctx = document.getElementById(this.chartId).getContext('2d');
       window.myGauge = new Chart(ctx, this.config);
     },
 
     methods: {
-      randomScalingFactor() {
-        return Math.round(Math.random() * 100);
-      },
-
-      randomData() {
-        return [
-          this.randomScalingFactor(),
-          this.randomScalingFactor()
-        ];
-      },
-
-      randomValue() {
-        return Math.max.apply(null, this.randomData()) * Math.random();
+      numberFormat(value) {
+        return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
       }
     }
   }
