@@ -3,24 +3,76 @@
 @section('content')
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-7">
                 <div class="row">
                     <div class="col">
-                        <treg-chart></treg-chart>
+                        <div class="card">
+                            <div class="card-header">
+                                <strong>Telkom Regional</strong>
+                            </div>
+                            <div class="card-body p-1">
+                                <img src="{{ asset('indonesiaHigh.png') }}" class="img-fluid" alt="">
+                                <div class="row">
+                                    <div class="col pr-1">
+                                        <div class="c-callout c-callout-info mb-1 px-1">
+                                            <strong><small class="text-muted">TREG 1</small></strong>
+                                        </div>
+                                    </div>
+                                    <div class="col pr-1">
+                                        <div class="c-callout c-callout-info mb-1 px-1">
+                                            <strong><small class="text-muted">TREG 2</small></strong>
+                                        </div>
+                                    </div>
+                                    <div class="col pr-1">
+                                        <div class="c-callout c-callout-secondary mb-1 px-1">
+                                            <strong><small class="text-muted">TREG 3</small></strong>
+                                        </div>
+                                    </div>
+                                    <div class="col pr-1">
+                                        <div class="c-callout c-callout-success mb-1 px-1">
+                                            <strong><small class="text-muted">TREG 4</small></strong>
+                                        </div>
+                                    </div>
+                                    <div class="col pr-1">
+                                        <div class="c-callout c-callout-danger mb-1 px-1">
+                                            <strong><small class="text-muted">TREG 5</small></strong>
+                                        </div>
+                                    </div>
+                                    <div class="col pr-1">
+                                        <div class="c-callout c-callout-primary mb-1 px-1">
+                                            <strong><small class="text-muted">TREG 6</small></strong>
+                                        </div>
+                                    </div>
+                                    <div class="col pr-1">
+                                        <div class="c-callout c-callout-warning mb-1 px-1">
+                                            <strong><small class="text-muted">TREG 7</small></strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
-                        <total-user
-                            :total-users="{{ $totalUsers }}"
-                            :label='@json($totalUsersLabel)'
-                            :data='@json($totalUsersData)'
-                        ></total-user>
+                        <treg-chart label="Building" :height="115"></treg-chart>
                     </div>
                     <div class="col">
-                        <total-space-booked></total-space-booked>
+                        <treg-chart label="Area" :height="115"></treg-chart>
                     </div>
                 </div>
+{{--                <div class="row">--}}
+{{--                    <div class="col">--}}
+{{--                        <total-user--}}
+{{--                            :total-users="{{ $totalUsers }}"--}}
+{{--                            :label='@json($totalUsersLabel)'--}}
+{{--                            :data='@json($totalUsersData)'--}}
+{{--                        ></total-user>--}}
+{{--                    </div>--}}
+{{--                    <div class="col">--}}
+{{--                        <total-space-booked></total-space-booked>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
             </div>
             <div class="col">
                 <div class="row">

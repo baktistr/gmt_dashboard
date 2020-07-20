@@ -1,43 +1,28 @@
 <template>
   <div class="card card-accent-info">
     <div class="card-header">
-      Telkom Regional
+      <strong>{{ label }}</strong>
     </div>
-    <div class="card-body">
-      <div class="c-chart-wrapper">
-        <canvas id="treg-chart"></canvas>
-      </div>
+    <div class="card-body p-1">
+      <bar-chart-example :label="label" :style="`height: ${height}px`"/>
     </div>
   </div>
 </template>
 
 <script>
-  import Chart from 'chart.js';
+  import BarChartExample from "./BarChartExample";
 
   export default {
-    mounted() {
-      const random = () => Math.round(Math.random() * 100)
-
-      new Chart(document.getElementById('treg-chart'), {
-        type: 'bar',
-        data: {
-          labels : ['TREG 1', 'TREG 2', 'TREG 3', 'TREG 4', 'TREG 5', 'TREG 6', 'TREG 7'],
-          datasets : [
-            {
-              label: 'Buildings',
-              backgroundColor : window.coreuiUtils.getStyle('--info'),
-              data : [random(), random(), random(), random(), random(), random(), random()]
-            },
-          ]
-        },
-        options: {
-          responsive: true
-        }
-      })
-    }
+    props: {
+      height: {
+        type: Number,
+        default: 300
+      },
+      label: {
+        type: String,
+        required: true
+      }
+    },
+    components: { BarChartExample }
   }
 </script>
-
-<style scoped>
-
-</style>

@@ -39,6 +39,6 @@ const app = new Vue({
     TotalUser,
     TotalSpaceBooked,
     CommercialSpace,
-    GaugeChart
+    GaugeChart,
   }
 });

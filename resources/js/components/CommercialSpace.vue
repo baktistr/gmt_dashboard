@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <div class="card-header">
-      Commercial Spaces
+      <strong>Commercial Spaces</strong>
     </div>
     <div class="card-body">
       <div class="c-chart-wrapper">
@@ -19,15 +19,18 @@
       new Chart(document.getElementById('commercial-spaces-chart'), {
         type: 'doughnut',
         data: {
-          labels: ['Available', 'Unavailable', 'Booked', 'Free'],
+          labels: ['26 Available', '200 Booked'],
           datasets: [{
-            data: [26, 200, 30, 50],
-            backgroundColor: ['#2ecc71', '#FF6384', '#36A2EB', '#bdc3c7'],
-            hoverBackgroundColor: ['#2ecc71', '#FF6384', '#36A2EB', '#bdc3c7']
+            data: [26, 200],
+            backgroundColor: ['#2ecc71', '#FF6384',],
+            hoverBackgroundColor: ['#2ecc71', '#FF6384',]
           }]
         },
         options: {
-          responsive: true
+          responsive: true,
+          tooltip: {
+            display: false
+          }
         }
       })
     }
