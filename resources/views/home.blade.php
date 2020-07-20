@@ -11,7 +11,11 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        <total-user></total-user>
+                        <total-user
+                            :total-users="{{ $totalUsers }}"
+                            :label='@json($totalUsersLabel)'
+                            :data='@json($totalUsersData)'
+                        ></total-user>
                     </div>
                     <div class="col">
                         <total-space-booked></total-space-booked>

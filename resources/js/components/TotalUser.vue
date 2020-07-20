@@ -1,7 +1,7 @@
 <template>
   <div class="card card-accent-info">
     <div class="card-body pb-0">
-      <div class="text-value-lg">9.823</div>
+      <div class="text-value-lg">{{ totalUsers }}</div>
       <div>{{ title }}</div>
     </div>
     <div class="c-chart-wrapper mt-3 mx-3" style="height:133px;">
@@ -15,6 +15,18 @@
 
   export default {
     props: {
+      totalUsers: {
+        type: Number,
+        required: true,
+      },
+      label: {
+        type: Array,
+        required: true
+      },
+      data: {
+        type: Array,
+        required: true
+      },
       title: {
         type: String,
         default: 'Total Users'
@@ -25,12 +37,12 @@
       new Chart(document.getElementById('total-user-chart'), {
         type: 'bar',
         data: {
-          labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October'],
+          labels: this.label,
           datasets: [
             {
               label: 'Total users',
               backgroundColor: 'rgb(26,140,255)',
-              data: [1, 18, 9, 17, 34, 22, 11, 16, 21, 3]
+              data: this.data
             }
           ]
         },
