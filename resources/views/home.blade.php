@@ -97,7 +97,7 @@
                                         <use xlink:href="assets/icons/coreui/free-symbol-defs.svg#cui-map"></use>
                                     </svg>
                                 </div>
-                                <h3>285</h3>
+                                <h3>{{ $totalArea }}</h3>
                                 <div class="text-muted text-uppercase font-weight-bold">Total Area</div>
                             </div>
                         </div>
@@ -110,7 +110,7 @@
                                         <use xlink:href="assets/icons/coreui/free-symbol-defs.svg#cui-building"></use>
                                     </svg>
                                 </div>
-                                <h3>2.350</h3>
+                                <h3>{{ $totalBuildings }}</h3>
                                 <div class="text-muted text-uppercase font-weight-bold">Total Buildings</div>
                             </div>
                         </div>
@@ -123,7 +123,7 @@
                                         <use xlink:href="assets/icons/coreui/free-symbol-defs.svg#cui-room"></use>
                                     </svg>
                                 </div>
-                                <h3>8.750</h3>
+                                <h3>{{ $totalSpaces }}</h3>
                                 <div class="text-muted text-uppercase font-weight-bold">Total Spaces</div>
                             </div>
                         </div>
