@@ -7,7 +7,7 @@
 @section('content')
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-7">
+            <div class="col-sm-6">
                 <div class="row">
                     <div class="col">
                         <div class="card">
@@ -59,10 +59,10 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        <treg-chart label="Building" :height="115"></treg-chart>
+                        <treg-chart label="Gedung" :height="115"></treg-chart>
                     </div>
                     <div class="col">
-                        <treg-chart label="Area" :height="115"></treg-chart>
+                        <treg-chart label="Lahan" :height="115"></treg-chart>
                     </div>
                 </div>
 {{--                <div class="row">--}}
@@ -81,15 +81,15 @@
             <div class="col">
                 <div class="row">
                     <div class="col-sm-6">
-                        <div class="card card-accent-danger text-danger">
+                        <div class="card card-accent-info text-info">
                             <div class="card-body">
                                 <div class="text-muted text-right position-absolute mr-4" style="right: 0">
-                                    <svg class="c-icon c-icon-2xl text-danger">
-                                        <use xlink:href="assets/icons/coreui/free-symbol-defs.svg#cui-globe-alt"></use>
+                                    <svg class="c-icon c-icon-2xl text-info">
+                                        <use xlink:href="assets/icons/coreui/free-symbol-defs.svg#cui-building"></use>
                                     </svg>
                                 </div>
-                                <h3>{{ $tregList->count() }}</h3>
-                                <div class="text-muted text-uppercase font-weight-bold">Total Regionals</div>
+                                <h3>2.350</h3>
+                                <div class="text-muted text-uppercase font-weight-bold">Total Gedung</div>
                             </div>
                         </div>
                     </div>
@@ -107,15 +107,15 @@
                         </div>
                     </div>
                     <div class="col-sm-6">
-                        <div class="card card-accent-info text-info">
+                        <div class="card card-accent-danger text-danger">
                             <div class="card-body">
                                 <div class="text-muted text-right position-absolute mr-4" style="right: 0">
-                                    <svg class="c-icon c-icon-2xl text-info">
-                                        <use xlink:href="assets/icons/coreui/free-symbol-defs.svg#cui-building"></use>
+                                    <svg class="c-icon c-icon-2xl text-danger">
+                                        <use xlink:href="assets/icons/coreui/free-symbol-defs.svg#cui-map"></use>
                                     </svg>
                                 </div>
-                                <h3>2.350</h3>
-                                <div class="text-muted text-uppercase font-weight-bold">Total Buildings</div>
+                                <h3>{{ $tregList->count() }}</h3>
+                                <div class="text-muted text-uppercase font-weight-bold">Lahan Bersertifikat</div>
                             </div>
                         </div>
                     </div>
@@ -124,11 +124,11 @@
                             <div class="card-body">
                                 <div class="text-muted text-right position-absolute mr-4" style="right: 0">
                                     <svg class="c-icon c-icon-2xl text-success">
-                                        <use xlink:href="assets/icons/coreui/free-symbol-defs.svg#cui-room"></use>
+                                        <use xlink:href="assets/icons/coreui/free-symbol-defs.svg#cui-map"></use>
                                     </svg>
                                 </div>
                                 <h3>8.750</h3>
-                                <div class="text-muted text-uppercase font-weight-bold">Total Spaces</div>
+                                <div class="text-muted text-uppercase font-weight-bold">Lahan Tanpa Sertifikat</div>
                             </div>
                         </div>
                     </div>

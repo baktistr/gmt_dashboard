@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <div class="card-header">
-      <strong>Commercial Spaces</strong>
+      <strong>Area Komersil</strong>
     </div>
     <div class="card-body">
       <div class="c-chart-wrapper">
