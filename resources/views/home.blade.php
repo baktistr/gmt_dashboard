@@ -102,7 +102,7 @@
                                     </svg>
                                 </div>
                                 <h3>285</h3>
-                                <div class="text-muted text-uppercase font-weight-bold">Total Area</div>
+                                <div class="text-muted text-uppercase font-weight-bold">Total Lahan</div>
                             </div>
                         </div>
                     </div>
