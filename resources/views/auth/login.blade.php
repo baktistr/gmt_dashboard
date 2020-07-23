@@ -1,5 +1,9 @@
 @extends('layouts.login')
 
+@section('title')
+    Login
+@endsection
+
 @section('content')
     <div class="container">
         <div class="d-flex row align-items-center justify-content-center" style="height: 100vh">

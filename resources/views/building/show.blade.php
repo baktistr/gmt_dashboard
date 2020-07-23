@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+    {{ $building->name }}
+@endsection
+
 @php
     $months = array(
         'January',
