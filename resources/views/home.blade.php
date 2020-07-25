@@ -101,8 +101,10 @@
                                         <use xlink:href="assets/icons/coreui/free-symbol-defs.svg#cui-map"></use>
                                     </svg>
                                 </div>
-                                <h3>285</h3>
-                                <div class="text-muted text-uppercase font-weight-bold">Total Lahan</div>
+
+                                <h3>{{ $totalArea }}</h3>
+                                <div class="text-muted text-uppercase font-weight-bold">Total Area</div>
+
                             </div>
                         </div>
                     </div>
@@ -127,8 +129,9 @@
                                         <use xlink:href="assets/icons/coreui/free-symbol-defs.svg#cui-map"></use>
                                     </svg>
                                 </div>
-                                <h3>8.750</h3>
-                                <div class="text-muted text-uppercase font-weight-bold">Lahan Tanpa Sertifikat</div>
+                                <h3>{{ $totalSpaces }}</h3>
+                                <div class="text-muted text-uppercase font-weight-bold">Total Spaces</div>
+
                             </div>
                         </div>
                     </div>
