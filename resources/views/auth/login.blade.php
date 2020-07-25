@@ -47,8 +47,8 @@
                 </div>
                 <div class="card text-white bg-white py-5 d-md-down-none" style="width:44%">
                     <div class="card-body text-center">
-                        <div class="text-center mt-5">
-                            <img class="img-fluid" src="{{ asset('img/telkom-logo.svg') }}" height="40" alt="{{ config('app.name') }}">
+                        <div class="text-center">
+                            <img class="img-fluid" src="{{ asset('img/login-logo.svg') }}"  alt="{{ config('app.name') }}">
                         </div>
                     </div>
                 </div>
