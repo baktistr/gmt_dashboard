@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Area;
+use App\Asset;
+use App\BuildingSpace;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -25,12 +28,18 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $totalUsers = $this->getTotalUsers();
+        $totalUsers     = $this->getTotalUsers();
+        $totalBuildings = Asset::count();
+        $totalSpaces    = BuildingSpace::count();
+        $totalAreas     = Area::count();
 
         return view('home', [
             'totalUsersLabel' => $totalUsers->reverse()->pluck('label'),
             'totalUsersData'  => $totalUsers->reverse()->pluck('data'),
             'totalUsers'      => $totalUsers->sum('data'),
+            'totalBuildings'  => $totalBuildings,
+            'totalSpaces'     => $totalSpaces,
+            'totalArea'       => $totalAreas,
         ]);
     }
 
