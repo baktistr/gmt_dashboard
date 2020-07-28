@@ -15,40 +15,40 @@
                                 <strong>Telkom Regional</strong>
                             </div>
                             <div class="card-body p-1">
-                                <img src="{{ asset('indonesiaHigh.png') }}" class="img-fluid" alt="">
+                                <img src="{{ asset('map.png') }}" class="img-fluid" alt="">
                                 <div class="row">
                                     <div class="col pr-1">
-                                        <div class="c-callout c-callout-info mb-1 px-1">
+                                        <div class="c-callout mb-1 px-1" style="border-left-color: #bf6e6a">
                                             <strong><small class="text-muted">TREG 1</small></strong>
                                         </div>
                                     </div>
                                     <div class="col pr-1">
-                                        <div class="c-callout c-callout-info mb-1 px-1">
+                                        <div class="c-callout mb-1 px-1" style="border-left-color: #8053f5">
                                             <strong><small class="text-muted">TREG 2</small></strong>
                                         </div>
                                     </div>
                                     <div class="col pr-1">
-                                        <div class="c-callout c-callout-secondary mb-1 px-1">
+                                        <div class="c-callout mb-1 px-1" style="border-left-color: #c0a683">
                                             <strong><small class="text-muted">TREG 3</small></strong>
                                         </div>
                                     </div>
                                     <div class="col pr-1">
-                                        <div class="c-callout c-callout-success mb-1 px-1">
+                                        <div class="c-callout mb-1 px-1" style="border-left-color: #ef58f3">
                                             <strong><small class="text-muted">TREG 4</small></strong>
                                         </div>
                                     </div>
                                     <div class="col pr-1">
-                                        <div class="c-callout c-callout-danger mb-1 px-1">
+                                        <div class="c-callout mb-1 px-1" style="border-left-color: #90a2bc">
                                             <strong><small class="text-muted">TREG 5</small></strong>
                                         </div>
                                     </div>
                                     <div class="col pr-1">
-                                        <div class="c-callout c-callout-primary mb-1 px-1">
+                                        <div class="c-callout mb-1 px-1" style="border-left-color: #c7d0a5">
                                             <strong><small class="text-muted">TREG 6</small></strong>
                                         </div>
                                     </div>
                                     <div class="col pr-1">
-                                        <div class="c-callout c-callout-warning mb-1 px-1">
+                                        <div class="c-callout mb-1 px-1" style="border-left-color: #c4a7ea">
                                             <strong><small class="text-muted">TREG 7</small></strong>
                                         </div>
                                     </div>
