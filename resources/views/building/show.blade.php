@@ -20,6 +20,9 @@
         'December',
     );
     $barData = collect([1, 18, 9, 17, 34, 22, 11, 10, 87, 23, 50, 43]);
+    //Convert 2D array To Single
+    $spaceAvailableData   = array_column($availableSpace , 'data');
+    $spaceAvailableLabels = array_column($availableSpace , 'lables');
 @endphp
 
 
@@ -115,10 +118,10 @@
                         <bar-chart-widget
                             title="Space Available"
                             chart-id="space-available"
-                            :labels='@json($months)'
-                            :data='@json($barData->shuffle()->all())'
+                            :labels='@json($spaceAvailableLabels)'
+                            :data='@json($convertArray)'
                             color="primary"
-                            bar-color="#2ecc71"
+                            bar-color="#2ecc71" 
                             :height="100"
                         ></bar-chart-widget>
                     </div>

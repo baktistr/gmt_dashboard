@@ -17,7 +17,7 @@ class BuildingController extends Controller
      */
     public function show(Asset $building)
     {
-        $availableSpace = $this->availableSpaceChart($building->id);
+        $availableSpace = $this->availableSpaceChart($building->id)->toArray();
 
         return view('building.show', [
             'building'       => $building,
@@ -41,13 +41,13 @@ class BuildingController extends Controller
         $last10Months->transform(function ($month) use ($id) {
             $availableSpace = BuildingSpace::query()
                 ->where('asset_id', $id)
-                ->where('is_available' , true)
+                ->where('is_available', true)
                 ->whereMonth('created_at', $month)
                 ->count();
 
             return [
-                'month' => $month->format('F Y'),
-                'data' => $availableSpace,
+                'data'  => $availableSpace,
+                'lables'=> $month->format('F Y'),
             ];
         });
 
