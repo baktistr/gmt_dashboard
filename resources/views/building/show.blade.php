@@ -22,6 +22,7 @@
     $barData = collect([1, 18, 9, 17, 34, 22, 11, 10, 87, 23, 50, 43]);
 @endphp
 
+
 @section('content')
     <div class="container-fluid">
         <div class="row">
@@ -92,7 +93,7 @@
                                         <use xlink:href="/assets/icons/coreui/free-symbol-defs.svg#cui-room"></use>
                                     </svg>
                                 </div>
-                                <h3>8.750</h3>
+                                <h3>{{ $building->spaces()->available()->count() }}</h3>
                                 <div class="text-muted text-uppercase font-weight-bold">Available Spaces</div>
                             </div>
                         </div>
@@ -105,7 +106,7 @@
                                         <use xlink:href="/assets/icons/coreui/free-symbol-defs.svg#cui-room"></use>
                                     </svg>
                                 </div>
-                                <h3>8.750</h3>
+                                <h3>{{ $building->spaces()->count() }}</h3>
                                 <div class="text-muted text-uppercase font-weight-bold">Total Spaces</div>
                             </div>
                         </div>
