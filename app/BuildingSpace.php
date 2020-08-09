@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+
 // use Spatie\Image\Manipulations;
 
 class BuildingSpace extends Model
@@ -28,6 +29,16 @@ class BuildingSpace extends Model
     public function prices(): HasMany
     {
         return $this->hasMany(BuildingSpacePrice::class, 'building_space_id');
+    }
+
+    /**
+     * Scope Query
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function scopeAvailable($query)
+    {
+        return $query->where('is_available', true)->get();
     }
 
     // /**

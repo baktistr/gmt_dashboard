@@ -20,7 +20,16 @@
         'December',
     );
     $barData = collect([1, 18, 9, 17, 34, 22, 11, 10, 87, 23, 50, 43]);
+    
+    //Convert 2D array To Single
+    $spaceAvailableData   = array_column($availableSpace , 'data');
+    $spaceAvailableLabels = array_column($availableSpace , 'lables');
+    // Unvavailable Space Data
+    $spaceUnAvailableData   = array_column($unAvailableChart , 'data');
+    $spaceUnAvailableLabels = array_column($unAvailableChart , 'lables');
+
 @endphp
+
 
 @section('content')
     <div class="container-fluid">
@@ -92,7 +101,7 @@
                                         <use xlink:href="/assets/icons/coreui/free-symbol-defs.svg#cui-room"></use>
                                     </svg>
                                 </div>
-                                <h3>8.750</h3>
+                                <h3>{{ $building->spaces()->available()->count() }}</h3>
                                 <div class="text-muted text-uppercase font-weight-bold">Available Spaces</div>
                             </div>
                         </div>
@@ -105,7 +114,7 @@
                                         <use xlink:href="/assets/icons/coreui/free-symbol-defs.svg#cui-room"></use>
                                     </svg>
                                 </div>
-                                <h3>8.750</h3>
+                                <h3>{{ $building->spaces()->count() }}</h3>
                                 <div class="text-muted text-uppercase font-weight-bold">Total Spaces</div>
                             </div>
                         </div>
@@ -114,10 +123,10 @@
                         <bar-chart-widget
                             title="Space Available"
                             chart-id="space-available"
-                            :labels='@json($months)'
-                            :data='@json($barData->shuffle()->all())'
+                            :labels='@json($spaceAvailableLabels)'
+                            :data='@json($spaceAvailableData)'
                             color="primary"
-                            bar-color="#2ecc71"
+                            bar-color="#2ecc71" 
                             :height="100"
                         ></bar-chart-widget>
                     </div>
@@ -136,8 +145,8 @@
                         <bar-chart-widget
                             title="Space Unavailable"
                             chart-id="space-unavailable"
-                            :labels='@json($months)'
-                            :data='@json($barData->shuffle()->all())'
+                            :labels='@json($spaceUnAvailableData)'
+                            :data='@json($spaceUnAvailableData)'
                             color="primary"
                             bar-color="#e74c3c"
                             :height="100"

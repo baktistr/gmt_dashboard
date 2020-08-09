@@ -46,6 +46,7 @@
     },
 
     mounted() {
+
       new Chart(document.getElementById(this.chartId), {
         type: 'bar',
         data: {
