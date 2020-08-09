@@ -17,11 +17,12 @@ class BuildingController extends Controller
      */
     public function show(Asset $building)
     {
-        $availableSpace = $this->availableSpaceChart($building->id)->toArray();
-
+        $availableSpace   = $this->availableSpaceChart($building->id)->toArray();
+        $unAvailableChart = $this->availableSpaceChart($building->id, false)->toArray();
         return view('building.show', [
-            'building'       => $building,
-            'availableSpace' => $availableSpace
+            'building'         => $building,
+            'availableSpace'   => $availableSpace,
+            'unAvailableChart' => $unAvailableChart,
         ]);
     }
 
@@ -30,7 +31,7 @@ class BuildingController extends Controller
      * 
      * @return Illuminate\Support\Collection
      */
-    protected function availableSpaceChart($id)
+    protected function availableSpaceChart($id, $available = true)
     {
         $last10Months = collect([]);
 
@@ -38,16 +39,16 @@ class BuildingController extends Controller
             $last10Months->add(Carbon::now()->subMonths($i));
         }
 
-        $last10Months->transform(function ($month) use ($id) {
+        $last10Months->transform(function ($month) use ($id, $available) {
             $availableSpace = BuildingSpace::query()
                 ->where('asset_id', $id)
-                ->where('is_available', true)
+                ->where('is_available', $available)
                 ->whereMonth('created_at', $month)
                 ->count();
 
             return [
                 'data'  => $availableSpace,
-                'lables'=> $month->format('F Y'),
+                'lables' => $month->format('F Y'),
             ];
         });
 
