@@ -119,7 +119,7 @@
                             title="Space Available"
                             chart-id="space-available"
                             :labels='@json($spaceAvailableLabels)'
-                            :data='@json($convertArray)'
+                            :data='@json($spaceAvailableData)'
                             color="primary"
                             bar-color="#2ecc71" 
                             :height="100"
