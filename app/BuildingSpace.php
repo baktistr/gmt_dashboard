@@ -33,8 +33,8 @@ class BuildingSpace extends Model
 
     /**
      * Scope Query
-     * 
-     * @return Builder
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function scopeAvailable($query)
     {
