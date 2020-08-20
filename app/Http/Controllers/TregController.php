@@ -14,9 +14,8 @@ class TregController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(TelkomRegional $treg)
     {
-        //
     }
 
     /**
@@ -28,25 +27,39 @@ class TregController extends Controller
     public function show(TelkomRegional $treg)
     {
         $area = Area::query()->where('telkom_regional_id', $treg->id)
-            ->pluck('id');
-
-        $assets = Asset::with(['area'])
-            ->whereIn('area_id', $area)
             ->get()
-            ->map(function ($asset) {
+            ->map(function ($area) use ($treg){
                 return [
-                    $asset->id,
-                    $asset->name,
-                    $asset->area->code,
-                    $asset->formatted_building_code,
-                    $asset->area->witel->name,
-                    route('building.show', $asset->id)
+                    $area->id,
+                    $area->name,
+                    $area->allotment,
+                    $area->address_detail,
+                    route('treg.area.show', ['treg' => $treg->id, 'area' => $area->id]),
                 ];
             });
 
+        // $assets = Asset::with(['area'])
+        //     ->whereIn('area_id', $area)
+        //     ->get()
+        //     ->map(function ($asset) {
+        //         return [
+        //             $asset->id,
+        //             $asset->name,
+        //             $asset->area->code,
+        //             $asset->formatted_building_code,
+        //             $asset->area->witel->name,
+        //             route('building.show', $asset->id)
+        //         ];
+        //     });
+
+        // return view('treg.show', [
+        //     'treg'   => $treg,
+        //     'assets' => $assets,
+        // ]);
+
         return view('treg.show', [
-            'treg'   => $treg,
-            'assets' => $assets,
+            'area' => $area,
+            'treg' => $treg,
         ]);
     }
 
