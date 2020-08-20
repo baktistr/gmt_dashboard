@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Area;
-use App\Asset;
 use App\TelkomRegional;
 use Illuminate\Http\Request;
 
@@ -19,7 +18,7 @@ class AreaController extends Controller
     {
 
         $area->load('assets');
-        
+
         $buildings = $area->assets->transform(function ($building) {
             return [
                 $building->id,
