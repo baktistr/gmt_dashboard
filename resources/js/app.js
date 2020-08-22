@@ -18,12 +18,14 @@ import Indonesia from "./components/dashboard/Indonesia";
 
 // Treg components...
 import BuildingList from "./components/treg/BuildingList";
+import AreaList from "./components/treg/AreaList.vue";
 
 import TotalUser from "./components/TotalUser";
 import TotalSpaceBooked from "./components/TotalSpaceBooked";
 import CommercialSpace from "./components/CommercialSpace";
 import GaugeChart from "./components/GaugeChart";
 import BarChartWidget from "./components/BarChartWidget";
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -43,6 +45,7 @@ const app = new Vue({
     CommercialSpace,
     GaugeChart,
     BarChartWidget,
-    Indonesia
+    Indonesia,
+    AreaList,
   }
 });

@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\AreaController;
 use App\Http\Controllers\BuildingController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TregController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,5 +31,7 @@ Auth::routes([
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/treg/{treg}', [TregController::class, 'show'])->name('treg.show');
+
+Route::get('/treg/{treg}/area/{area}', [AreaController::class, 'show'])->name('treg.area.show');
 
 Route::get('/building/{building}', [BuildingController::class, 'show'])->name('building.show');

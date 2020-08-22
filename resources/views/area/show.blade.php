@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('title')
-    {{ $treg->name }}
+    {{ $area->name }}
 @endsection
 
 @section('content')
 <div class="container-fluid">
     <div class="row">
         <div class="col">
-            <area-list :data='@json($area)'></area-list>
+            <building-list :data='@json($buildings)'></building-list>
         </div>
     </div>
 </div>
