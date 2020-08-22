@@ -15,7 +15,7 @@
             <li class="c-sidebar-nav-item">
                 <a class="c-sidebar-nav-link" href="{{ route('treg.show', $treg) }}">
                     <i class="cil-library-building c-sidebar-nav-icon"></i>
-                    {{ $treg->formatted_name }}
+                    {{ $treg->name }}
                 </a>
             </li>
         @endforeach

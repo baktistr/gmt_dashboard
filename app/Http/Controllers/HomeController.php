@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use App\Area;
 use App\Asset;
 use App\BuildingSpace;
+use App\TelkomRegional;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Str;
 
 class HomeController extends Controller
 {
@@ -28,46 +31,21 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $totalUsers     = $this->getTotalUsers();
-        $totalBuildings = Asset::count();
-        $totalSpaces    = BuildingSpace::count();
-        $totalAreas     = Area::count();
-
-        return view('home', [
-            'totalUsersLabel' => $totalUsers->reverse()->pluck('label'),
-            'totalUsersData'  => $totalUsers->reverse()->pluck('data'),
-            'totalUsers'      => $totalUsers->sum('data'),
-            'totalBuildings'  => $totalBuildings,
-            'totalSpaces'     => $totalSpaces,
-            'totalArea'       => $totalAreas,
-        ]);
-    }
-
-    /**
-     * Get total users.
-     *
-     * @return \Illuminate\Support\Collection
-     */
-    protected function getTotalUsers()
-    {
-        $last10Months = collect([]);
-
-        for ($i = 0; $i < 10; $i++) {
-            $last10Months->add(Carbon::now()->subMonths($i));
-        }
-
-        $last10Months->transform(function ($month) {
-            $totalUsers = User::query()
-                ->doesntHave('roles')
-                ->whereMonth('created_at', $month)
-                ->count();
-
-            return [
-                'label' => $month->format('F Y'),
-                'data'  => $totalUsers,
-            ];
+        $tregs = Cache::remember('home:tregs', now()->addDay(), function () {
+            return TelkomRegional::query()->withCount(['areas', 'assets'])
+                ->get()
+                ->map(function ($treg) {
+                    return [
+                        'id'          => str_replace(' ', '', $treg->name),
+                        'treg'        => $treg->name,
+                        'areasCount'  => $treg->areas_count,
+                        'assetsCount' => $treg->assets_count,
+                    ];
+                });
         });
 
-        return $last10Months;
+        return view('home', [
+            'tregs' => $tregs,
+        ]);
     }
 }

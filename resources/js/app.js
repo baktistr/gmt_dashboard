@@ -14,6 +14,7 @@ window.Vue = require('vue');
 // Dashboard components...
 import TregChart from "./components/dashboard/TregChart";
 import WitelChart from "./components/dashboard/WitelChart";
+import Indonesia from "./components/dashboard/Indonesia";
 
 // Treg components...
 import BuildingList from "./components/treg/BuildingList";
@@ -44,6 +45,7 @@ const app = new Vue({
     CommercialSpace,
     GaugeChart,
     BarChartWidget,
-    AreaList
+    Indonesia,
+    AreaList,
   }
 });
