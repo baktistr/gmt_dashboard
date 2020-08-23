@@ -8,7 +8,7 @@
         @endif
 
         @if(request()->routeIs('treg.show'))
-            <li class="c-header-nav-item font-weight-bolder pl-2">{{ $treg->formatted_name }}</li>
+            <li class="c-header-nav-item font-weight-bolder pl-2">{{ $treg->name }}</li>
         @endif
 
         @if(request()->routeIs('building.show'))
