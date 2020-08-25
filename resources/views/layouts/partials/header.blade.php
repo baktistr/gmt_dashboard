@@ -11,8 +11,12 @@
             <li class="c-header-nav-item font-weight-bolder pl-2">{{ $treg->name }}</li>
         @endif
 
+        @if(request()->routeIs('treg.area.show'))
+            <li class="c-header-nav-item font-weight-bolder pl-2">AREA {{ $area->name }}</li>
+        @endif
+
         @if(request()->routeIs('building.show'))
-            <li class="c-header-nav-item font-weight-bolder pl-2">{{ $building->name }}</li>
+            <li class="c-header-nav-item font-weight-bolder pl-2">GEDUNG {{ $building->name }}</li>
         @endif
     </ul>
 
