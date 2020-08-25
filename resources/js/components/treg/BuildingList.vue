@@ -35,7 +35,7 @@
             name: 'Aksi',
             formatter: (cell, row) => {
               return h('button', {
-                className: 'btn btn-primary btn-sm',
+                className: 'btn btn-danger btn-sm',
                 onClick: () => window.location.href = row.cells[5].data
               }, 'Tampilkan')
             }
