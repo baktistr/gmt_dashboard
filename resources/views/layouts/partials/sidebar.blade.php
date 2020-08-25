@@ -1,8 +1,8 @@
 <div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show" id="sidebar">
-    <div class="c-sidebar-brand d-lg-down-none bg-white">
+    <a href="{{ route('home') }}" class="c-sidebar-brand d-lg-down-none bg-white">
         <img class="c-sidebar-brand-full" src="{{ asset('img/telkom-logo.svg') }}" height="55" alt="{{ config('app.name') }}">
         <img class="c-sidebar-brand-minimized" src="{{ asset('img/telkom-logo-minimized.svg') }}" height="40" alt="{{ config('app.name') }}">
-    </div>
+    </a>
     <ul class="c-sidebar-nav">
         <li class="c-sidebar-nav-item">
             <a class="c-sidebar-nav-link" href="{{ route('home') }}">
