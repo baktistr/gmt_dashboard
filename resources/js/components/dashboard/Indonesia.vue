@@ -2,7 +2,7 @@
   <div>
     <svg width="100%" height="100%" viewBox="0 0 2021 922" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
         <g id="Lautan">
-            <rect x="0" y="0" width="100%" height="921.798" style="fill:rgb(167,215,252);"/>
+            <rect x="0" y="0" width="100%" height="921.798" style="fill:#ffffff"/>
         </g>
           <g id="Outsider" transform="matrix(1,0,0,1,-17.4771,18.4557)">
             <g opacity="0.5">
