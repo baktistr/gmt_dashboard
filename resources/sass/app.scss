@@ -4,3 +4,19 @@
 // Core UI
 @import '~@coreui/coreui/scss/coreui';
 @import '~@coreui/icons/scss/free/free-icons';
+
+.c-sidebar {
+  background: #C1242B !important;
+
+  .c-sidebar-nav-title {
+    font-size: initial !important;
+    text-transform: capitalize !important;
+    color: yellow !important;
+  }
+
+  .c-sidebar-nav-link {
+    &:hover {
+      background: transparent !important;
+    }
+  }
+}
