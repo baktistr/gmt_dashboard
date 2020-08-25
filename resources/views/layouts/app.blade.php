@@ -31,10 +31,14 @@
         @include('layouts.partials.header')
 
         <div class="c-body">
-            <main class="c-main">
+            <main class="c-main mb-4">
                 @yield('content')
             </main>
         </div>
+
+        <footer class="c-footer">
+            <div>© {{ date('Y') }} <a href="https://cmdspacelabs.com" target="_blank">CMD+Space Labs</a>.</div>
+        </footer>
     </div>
 </div>
 </body>
