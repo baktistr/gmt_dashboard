@@ -30,6 +30,6 @@ class District extends Model
      */
     public function assets(): HasMany
     {
-        return $this->hasMany(Asset::class, 'district_id');
+        return $this->hasMany(Building::class, 'district_id');
     }
 }

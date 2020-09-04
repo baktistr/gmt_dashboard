@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Area;
-use App\Asset;
+use App\Building;
 use App\BuildingSpace;
 use App\TelkomRegional;
 use App\User;

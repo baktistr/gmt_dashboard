@@ -30,7 +30,7 @@ class Province extends Model
      */
     public function assets(): HasMany
     {
-        return $this->hasMany(Asset::class, 'province_id');
+        return $this->hasMany(Building::class, 'province_id');
     }
 
     /**

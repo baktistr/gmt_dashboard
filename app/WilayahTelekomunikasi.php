@@ -35,6 +35,6 @@ class WilayahTelekomunikasi extends Model
      */
     public function assets(): HasManyThrough
     {
-        return $this->hasManyThrough(Asset::class, Area::class, 'witel_id');
+        return $this->hasManyThrough(Building::class, Area::class, 'witel_id');
     }
 }

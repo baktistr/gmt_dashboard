@@ -40,6 +40,6 @@ class Regency extends Model
      */
     public function assets(): HasMany
     {
-        return $this->hasMany(Asset::class, 'regency_id');
+        return $this->hasMany(Building::class, 'regency_id');
     }
 }

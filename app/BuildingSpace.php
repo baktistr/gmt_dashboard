@@ -19,7 +19,7 @@ class BuildingSpace extends Model
      */
     public function building(): BelongsTo
     {
-        return $this->belongsTo(Asset::class, 'building_id');
+        return $this->belongsTo(Building::class, 'building_id');
     }
 
     /**

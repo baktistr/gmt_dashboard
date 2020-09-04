@@ -24,6 +24,6 @@ class Insurance extends Model
      */
     public function asset(): BelongsTo
     {
-        return $this->belongsTo(Asset::class, 'asset_id');
+        return $this->belongsTo(Building::class, 'asset_id');
     }
 }

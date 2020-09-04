@@ -68,6 +68,6 @@ class Area extends Model
      */
     public function assets(): HasMany
     {
-        return $this->hasMany(Asset::class, 'area_id');
+        return $this->hasMany(Building::class, 'area_id');
     }
 }
