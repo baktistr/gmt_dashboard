@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Asset;
-use App\BuildingHelpDesk;
+use App\Building;
 use App\BuildingSpace;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
 class BuildingController extends Controller
@@ -14,34 +12,35 @@ class BuildingController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param \App\Asset $building
+     * @param \App\Building $building
      * @return \Illuminate\View\View
      */
-    public function show(Asset $building)
+    public function show(Building $building)
     {
-        $availableSpace   = $this->availableSpaceChart($building->id)->toArray();
+        $availableSpace = $this->availableSpaceChart($building->id)->toArray();
         $unAvailableChart = $this->availableSpaceChart($building->id, false)->toArray();
-        $pending          = $this->countComplaint('pending', $building->id);
-        $done             = $this->countComplaint('done', $building->id);
-        $progress         = $this->countComplaint('in-progress', $building->id);
-        $total            = $this->totalComplaint($building->id);
-        $complaintByMount = $this->complaintCountBymonth($building->id);
+
+        $complaints = [
+            'total'           => $building->complaints()->count(),
+            'totalPending'    => $this->getComplaintsCountByStatus($building, 'pending'),
+            'totalInProgress' => $this->getComplaintsCountByStatus($building, 'in-progress'),
+            'totalDone'       => $this->getComplaintsCountByStatus($building, 'done'),
+            'data'            => $this->getComplaints($building),
+        ];
 
         return view('building.show', [
             'building'         => $building,
             'availableSpace'   => $availableSpace,
             'unAvailableChart' => $unAvailableChart,
-            'pending'          => $pending,
-            'done'             => $done,
-            'progress'         => $progress,
-            'total'            => $total,
-            'complaints'       => $complaintByMount,
+            'complaints'       => $complaints,
         ]);
     }
 
     /**
      * Space Available Space Bar Chart
-     * 
+     *
+     * @param      $id
+     * @param bool $available
      * @return Collection
      */
     protected function availableSpaceChart($id, $available = true)
@@ -60,7 +59,7 @@ class BuildingController extends Controller
                 ->count();
 
             return [
-                'data'  => $availableSpace,
+                'data'   => $availableSpace,
                 'lables' => $month->format('F Y'),
             ];
         });
@@ -69,62 +68,64 @@ class BuildingController extends Controller
     }
 
     /**
-     * Display Complaint Chart
-     * @return int
+     * Get complaints data for current year.
+     *
+     * @param \App\Building $building
+     * @return \Illuminate\Support\Collection
      */
-    protected function countComplaint(string $status, int $building_id = null)
+    protected function getComplaints(Building $building)
     {
+        $complaints = collect([]);
 
-        $complaints = Asset::query()
-            ->with('complaints')
-            ->where('id', $building_id)
-            ->whereHas('complaints', function ($query) use ($status) {
-                $query->where('status', $status);
-            })->count();
+        for ($i = 0; $i < 12; $i++) {
+            $complaints->add(Carbon::now()->months($i + 1));
+        }
+
+        $complaints->transform(function ($month) use ($building) {
+            $totalComplaints = $building->complaints()
+                ->whereMonth('created_at', $month)
+                ->whereYear('created_at', $month)
+                ->count();
+
+            return [
+                'label'  => $month->format('F'),
+                'status' => [
+                    'pending'         => [
+                        'total'      => $totalPending = $this->getComplaintsCountByStatus($building, 'pending', $month),
+                        'percentage' => $totalPending ? ($totalPending / $totalComplaints) * 100 : 0,
+                    ],
+                    'in-progress'     => [
+                        'total'      => $totalInProgress = $this->getComplaintsCountByStatus($building, 'in-progress', $month),
+                        'percentage' => $totalInProgress ? ($totalInProgress / $totalComplaints) * 100 : 0,
+                    ],
+                    'done'            => [
+                        'total'      => $totalDone = $this->getComplaintsCountByStatus($building, 'done', $month),
+                        'percentage' => $totalDone ? ($totalDone / $totalComplaints) * 100 : 0,
+                    ],
+                    'totalComplaints' => $totalComplaints,
+                ],
+            ];
+        });
 
         return $complaints;
     }
 
     /**
-     * Count total Compalaint
+     * Get Complaints count by status.
+     *
+     * @param \App\Building $building
+     * @param               $status
+     * @param null          $month
      * @return int
      */
-    protected function totalComplaint(int $building_id)
+    protected function getComplaintsCountByStatus(Building $building, $status, $month = null)
     {
-        /* Total Complaints */
-
-        $complaints = Asset::query()
-            ->find($building_id)
-            ->complaints
+        return $building->complaints()
+            ->when($month, function ($query) use ($month) {
+                $query->whereMonth('created_at', $month)
+                    ->whereYear('created_at', $month);
+            })
+            ->where('status', $status)
             ->count();
-
-        return $complaints;
-    }
-
-    protected function complaintCountBymonth(int $building_id)
-    {
-
-        $last12Months = collect([]);
-
-        for ($i = 0; $i < 12; $i++) {
-            $last12Months->add(Carbon::now()->months($i + 1));
-        }
-
-        $last12Months->transform(function ($month) use ($building_id) {
-
-            $complaint = BuildingHelpDesk::query()
-                ->where('building_id', $building_id)
-                ->whereMonth('created_at', $month)
-                ->whereYear('created_at' , $month)
-                ->count();
-
-            return [
-                'complaints'   => $complaint,
-                'labels' => $month->format('F Y'),
-            ];
-        });
-
-        return $last12Months;
-
     }
 }

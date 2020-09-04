@@ -38,43 +38,82 @@
                 <div class="row">
                     <div class="col">
                         <div class="card card-accent-primary">
-                            <div class="card-header">Complaints</div>
+                            <div class="card-header">Complaints Statistic {{ date('Y') }}</div>
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
                                         <div class="row">
-                                            <div class="col-4">
-                                                <div class="c-callout c-callout-success"><small
-                                                            class="text-muted">Fixed</small>
-                                                    <div class="text-value-lg">{{$done}}</div>
+                                            <!-- /.col-->
+                                            <div class="col-3">
+                                                <div class="c-callout c-callout-danger mt-0">
+                                                    <small class="text-muted">Pending</small>
+                                                    <div class="text-value-lg">{{ $complaints['totalPending'] }}</div>
                                                 </div>
                                             </div>
                                             <!-- /.col-->
-                                            <div class="col-4">
-                                                <div class="c-callout c-callout-danger"><small
-                                                            class="text-muted">On Progress</small>
-                                                    <div class="text-value-lg">{{$progress}}</div>
+                                            <div class="col-3">
+                                                <div class="c-callout c-callout-info mt-0">
+                                                    <small class="text-muted">On Progress</small>
+                                                    <div class="text-value-lg">{{ $complaints['totalInProgress'] }}</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-3">
+                                                <div class="c-callout c-callout-success mt-0">
+                                                    <small class="text-muted">Done</small>
+                                                    <div class="text-value-lg">{{ $complaints['totalDone'] }}</div>
                                                 </div>
                                             </div>
                                             <!-- /.col-->
-                                            <div class="col-4">
-                                                <div class="c-callout c-callout-primary"><small
-                                                            class="text-muted">Total</small>
-                                                    <div class="text-value-lg">{{$total}}</div>
+                                            <div class="col-3">
+                                                <div class="c-callout c-callout-primary mt-0">
+                                                    <small class="text-muted">Total</small>
+                                                    <div class="text-value-lg">{{ $complaints['total'] }}</div>
                                                 </div>
                                             </div>
                                         </div>
                                         <!-- /.row-->
+
                                         <hr class="mt-0">
-                                        @foreach($complaints as $month)
+
+                                        @foreach($complaints['data'] as $complaint)
                                             <div class="progress-group @if(!$loop->last)mb-2 @else mb-0 @endif">
-                                                <div class="progress-group-prepend"><span
-                                                            class="progress-group-text">{{$month['labels']}}</span>
-                                                        </div>
+                                                <div class="progress-group-prepend">
+                                                    <span class="progress-group-text">{{$complaint['label']}}</span>
+                                                </div>
                                                 <div class="progress-group-bars">
-                                                    <div class="progress progress-xs">
-                                                        <div class="progress-bar bg-success" role="progressbar" style="width: {{ $month['complaints'] }}%"
-                                                             aria-valuenow="{{ $month['complaints'] }}" aria-valuemin="0" aria-valuemax="{{ $month['complaints'] }}"></div>
+                                                    <div class="progress">
+                                                        <div
+                                                            class="progress-bar bg-gradient-danger"
+                                                            role="progressbar"
+                                                            style="width: {{ $complaint['status']['pending']['percentage'] }}%"
+                                                            aria-valuenow="{{ $complaint['status']['pending']['total'] }}"
+                                                            aria-valuemin="0"
+                                                            aria-valuemax="{{ $complaint['status']['totalComplaints'] }}"
+                                                        >
+                                                            {{ $complaint['status']['pending']['total'] }}
+                                                        </div>
+
+                                                        <div
+                                                            class="progress-bar bg-info progress-bar-striped progress-bar-animated"
+                                                            role="progressbar"
+                                                            style="width: {{ $complaint['status']['in-progress']['percentage'] }}%"
+                                                            aria-valuenow="{{ $complaint['status']['in-progress']['total'] }}"
+                                                            aria-valuemin="0"
+                                                            aria-valuemax="{{ $complaint['status']['totalComplaints'] }}"
+                                                        >
+                                                            {{ $complaint['status']['in-progress']['total'] }}
+                                                        </div>
+
+                                                        <div
+                                                            class="progress-bar bg-gradient-success"
+                                                            role="progressbar"
+                                                            style="width: {{ $complaint['status']['done']['percentage'] }}%"
+                                                            aria-valuenow="{{ $complaint['status']['done']['total'] }}"
+                                                            aria-valuemin="0"
+                                                            aria-valuemax="{{ $complaint['status']['totalComplaints'] }}"
+                                                        >
+                                                            {{ $complaint['status']['done']['total'] }}
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
