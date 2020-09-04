@@ -11,6 +11,8 @@ class Asset extends Model
 {
     use SoftDeletes;
 
+    protected $table = "buildings";
+
     /**
      * {@inheritDoc}
      */
@@ -94,7 +96,7 @@ class Asset extends Model
      */
     public function spaces(): HasMany
     {
-        return $this->hasMany(BuildingSpace::class, 'asset_id');
+        return $this->hasMany(BuildingSpace::class, 'building_id');
     }
 
     /**
@@ -104,7 +106,7 @@ class Asset extends Model
      */
     public function certificates(): HasMany
     {
-        return $this->hasMany(AssetCertificate::class, 'asset_id');
+        return $this->hasMany(AssetCertificate::class, 'building_id');
     }
 
     /**
@@ -114,18 +116,17 @@ class Asset extends Model
      */
     public function assetPbbs(): HasMany
     {
-        return $this->hasMany(AssetPbb::class, 'asset_id');
+        return $this->hasMany(AssetPbb::class, 'building_id');
     }
 
-     /**
+    /**
      * A building can have many Asset disputes Histories.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function disputeHistories(): HasMany
     {
-        return $this->hasMany(AssetDisputeHistory::class, 'asset_id');
-
+        return $this->hasMany(AssetDisputeHistory::class, 'building_id');
     }
 
     /**
@@ -135,7 +136,7 @@ class Asset extends Model
      */
     public function otherDocuments(): HasMany
     {
-        return $this->hasMany(AssetOtherDocument::class, 'asset_id');
+        return $this->hasMany(AssetOtherDocument::class, 'building_id');
     }
 
     /**
@@ -145,7 +146,7 @@ class Asset extends Model
      */
     public function floors(): HasMany
     {
-        return $this->hasMany(AssetFloor::class, 'asset_id');
+        return $this->hasMany(AssetFloor::class, 'building_id');
     }
 
     /**
@@ -155,7 +156,7 @@ class Asset extends Model
      */
     public function plns(): HasMany
     {
-        return $this->hasMany(AssetPln::class, 'asset_id');
+        return $this->hasMany(AssetPln::class, 'building_id');
     }
     /**
      * Asset can have many Assurance.
@@ -164,6 +165,29 @@ class Asset extends Model
      */
     public function insurances(): HasMany
     {
-        return $this->hasMany(Insurance::class, 'asset_id');
+        return $this->hasMany(Insurance::class, 'building_id');
+    }
+
+    /**
+     * A building can assign many help-desks.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function helpDesks(): HasMany
+    {
+        return $this->hasMany(User::class, 'building_id')
+            ->whereHas('roles', function ($query) {
+                $query->where('name', 'Help Desk');
+            });
+    }
+
+    /**
+     * A building can have many complaints.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function complaints(): HasMany
+    {
+        return $this->hasMany(BuildingHelpDesk::class, 'building_id');
     }
 }
