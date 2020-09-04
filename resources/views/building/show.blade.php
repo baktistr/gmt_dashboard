@@ -76,46 +76,50 @@
                                         <hr class="mt-0">
 
                                         @foreach($complaints['data'] as $complaint)
-                                            <div class="progress-group @if(!$loop->last)mb-2 @else mb-0 @endif">
-                                                <div class="progress-group-prepend">
-                                                    <span class="progress-group-text">{{$complaint['label']}}</span>
-                                                </div>
-                                                <div class="progress-group-bars">
-                                                    <div class="progress">
-                                                        <div
-                                                            class="progress-bar bg-gradient-danger"
-                                                            role="progressbar"
-                                                            style="width: {{ $complaint['status']['pending']['percentage'] }}%"
-                                                            aria-valuenow="{{ $complaint['status']['pending']['total'] }}"
-                                                            aria-valuemin="0"
-                                                            aria-valuemax="{{ $complaint['status']['totalComplaints'] }}"
-                                                        >
-                                                            {{ $complaint['status']['pending']['total'] }}
-                                                        </div>
+                                            <div class="d-flex">
+                                                <div class="flex-grow-1 progress-group @if(!$loop->last)mb-2 @else mb-0 @endif">
+                                                    <div class="progress-group-prepend">
+                                                        <span class="progress-group-text">{{$complaint['label']}}</span>
+                                                    </div>
+                                                    <div class="progress-group-bars">
+                                                        <div class="progress">
+                                                            <div
+                                                                class="progress-bar bg-gradient-danger"
+                                                                role="progressbar"
+                                                                style="width: {{ $complaint['status']['pending']['percentage'] }}%"
+                                                                aria-valuenow="{{ $complaint['status']['pending']['total'] }}"
+                                                                aria-valuemin="0"
+                                                                aria-valuemax="{{ $complaint['status']['totalComplaints'] }}"
+                                                            >
+                                                                {{ $complaint['status']['pending']['total'] }}
+                                                            </div>
 
-                                                        <div
-                                                            class="progress-bar bg-info progress-bar-striped progress-bar-animated"
-                                                            role="progressbar"
-                                                            style="width: {{ $complaint['status']['in-progress']['percentage'] }}%"
-                                                            aria-valuenow="{{ $complaint['status']['in-progress']['total'] }}"
-                                                            aria-valuemin="0"
-                                                            aria-valuemax="{{ $complaint['status']['totalComplaints'] }}"
-                                                        >
-                                                            {{ $complaint['status']['in-progress']['total'] }}
-                                                        </div>
+                                                            <div
+                                                                class="progress-bar bg-info progress-bar-striped progress-bar-animated"
+                                                                role="progressbar"
+                                                                style="width: {{ $complaint['status']['in-progress']['percentage'] }}%"
+                                                                aria-valuenow="{{ $complaint['status']['in-progress']['total'] }}"
+                                                                aria-valuemin="0"
+                                                                aria-valuemax="{{ $complaint['status']['totalComplaints'] }}"
+                                                            >
+                                                                {{ $complaint['status']['in-progress']['total'] }}
+                                                            </div>
 
-                                                        <div
-                                                            class="progress-bar bg-gradient-success"
-                                                            role="progressbar"
-                                                            style="width: {{ $complaint['status']['done']['percentage'] }}%"
-                                                            aria-valuenow="{{ $complaint['status']['done']['total'] }}"
-                                                            aria-valuemin="0"
-                                                            aria-valuemax="{{ $complaint['status']['totalComplaints'] }}"
-                                                        >
-                                                            {{ $complaint['status']['done']['total'] }}
+                                                            <div
+                                                                class="progress-bar bg-gradient-success"
+                                                                role="progressbar"
+                                                                style="width: {{ $complaint['status']['done']['percentage'] }}%"
+                                                                aria-valuenow="{{ $complaint['status']['done']['total'] }}"
+                                                                aria-valuemin="0"
+                                                                aria-valuemax="{{ $complaint['status']['totalComplaints'] }}"
+                                                            >
+                                                                {{ $complaint['status']['done']['total'] }}
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
+
+                                                <span class="ml-1" style="width: 30px;">{{ $complaint['status']['totalComplaints'] }}</span>
                                             </div>
                                         @endforeach
                                     </div>
