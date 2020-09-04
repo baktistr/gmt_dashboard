@@ -119,7 +119,7 @@ class BuildingController extends Controller
                 ->count();
 
             return [
-                'data'   => $complaint,
+                'complaints'   => $complaint,
                 'labels' => $month->format('F Y'),
             ];
         });

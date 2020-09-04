@@ -73,8 +73,8 @@
                                                         </div>
                                                 <div class="progress-group-bars">
                                                     <div class="progress progress-xs">
-                                                        <div class="progress-bar bg-success" role="progressbar" style="width: {{ $month['data'] }}%"
-                                                             aria-valuenow="{{ $month['data'] }}" aria-valuemin="0" aria-valuemax="{{ $month['data'] }}"></div>
+                                                        <div class="progress-bar bg-success" role="progressbar" style="width: {{ $month['complaints'] }}%"
+                                                             aria-valuenow="{{ $month['complaints'] }}" aria-valuemin="0" aria-valuemax="{{ $month['complaints'] }}"></div>
                                                     </div>
                                                 </div>
                                             </div>
