@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class BuildingSpace extends Model
 {
 
+    protected $table = "building_spaces";
     /**
      * A building space belongs to building
      *
@@ -18,7 +19,7 @@ class BuildingSpace extends Model
      */
     public function building(): BelongsTo
     {
-        return $this->belongsTo(Asset::class, 'asset_id');
+        return $this->belongsTo(Asset::class, 'building_id');
     }
 
     /**
