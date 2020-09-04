@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
-class AssetCertificate extends Model implements HasMedia
+class AssetCertificate extends Model 
 {
-    use InteractsWithMedia, SoftDeletes;
+    use  SoftDeletes;
 
     /**
      * A certificate belongs to asset.
@@ -19,7 +19,7 @@ class AssetCertificate extends Model implements HasMedia
      */
     public function asset(): BelongsTo
     {
-        return $this->belongsTo(Asset::class, 'asset_id');
+        return $this->belongsTo(Asset::class, 'building_id');
     }
 
     /**
