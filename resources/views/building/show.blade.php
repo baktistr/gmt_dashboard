@@ -219,7 +219,7 @@
                     chart-id="water-consumption"
                     title="Water Consumption"
                     unit="m3"
-                    :value="12000"
+                    :value="{{$waterConsumptions}}"
                 ></gauge-chart>
             </div>
             <div class="col-sm-3">
@@ -227,7 +227,7 @@
                     chart-id="fuel-consumption"
                     title="Fuel Consumption"
                     unit="liter"
-                    :value="300"
+                    :value="{{ $fuel }}"
                     :data='@json([600, 850, 1000])'
                 ></gauge-chart>
             </div>

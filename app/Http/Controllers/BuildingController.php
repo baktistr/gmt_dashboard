@@ -18,10 +18,11 @@ class BuildingController extends Controller
      */
     public function show(Building $building)
     {
-        $availableSpace = $this->availableSpaceChart($building->id)->toArray();
-        $unAvailableChart = $this->availableSpaceChart($building->id, false)->toArray();
+        $availableSpace         = $this->availableSpaceChart($building->id)->toArray();
+        $unAvailableChart       = $this->availableSpaceChart($building->id, false)->toArray();
         $electricityConsumption = $this->getElectricityCounting($building);
-
+        $waterConsumptions      = $this->getWaterConsumptionCounting($building);
+        $fuel                   = $this->getFuelCounting($building);
         $complaints = [
             'total'           => $building->complaints()->count(),
             'totalPending'    => $this->getComplaintsCountByStatus($building, 'pending'),
@@ -36,6 +37,8 @@ class BuildingController extends Controller
             'unAvailableChart'       => $unAvailableChart,
             'complaints'             => $complaints,
             'electricityConsumption' => $electricityConsumption,
+            'waterConsumptions'      => $waterConsumptions,
+            'fuel'                   => $fuel,
         ]);
     }
 
@@ -150,6 +153,42 @@ class BuildingController extends Controller
 
         $consumptions->each(function ($consumption) use ($total) {
             $total->add($consumption->totalElectricMeter());
+        });
+
+        return $total->sum();
+    }
+    /**
+     * Get Counting used Water Consumption  on this month
+     * @param \App\Building
+     * @return mixed
+     */
+    protected function getWaterConsumptionCounting(Building $building)
+    {
+        $total = collect([]);
+
+        $waterConsumptions = $building
+            ->waterConsumptions()
+            ->whereMonth('date', now()->month)
+            ->whereYear('date', now()->year)
+            ->get();
+        $waterConsumptions->each(function ($consumption) use ($total) {
+            $total->add($consumption->usage);
+        });
+
+        return $total->sum();
+    }
+
+    protected function getFuelCounting(Building $building)
+    {
+        $total = collect([]);
+
+        $fuel = $building->dieselFuelConsumptions()
+            ->whereMonth('date', now()->month)
+            ->whereyear('date', now()->year)
+            ->where('type', 'remain')
+            ->get();
+        $fuel->each(function ($fuel) use ($total) {
+            $total->add($fuel->amount);
         });
 
         return $total->sum();

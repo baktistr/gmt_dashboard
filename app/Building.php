@@ -200,4 +200,24 @@ class Building extends Model
     {
         return $this->hasMany(BuildingElectricityConsumption::class, 'building_id');
     }
+
+    /**
+     * A Building can Have Many electricity consumptions.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function waterConsumptions(): HasMany
+    {
+        return $this->hasMany(BuildingWaterConsumption::class, 'building_id');
+    }
+
+    /**
+     * A building can have many diesel fuel consumptions.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function dieselFuelConsumptions(): HasMany
+    {
+        return $this->hasMany(BuildingDieselFuelConsumption::class, 'building_id');
+    }
 }
