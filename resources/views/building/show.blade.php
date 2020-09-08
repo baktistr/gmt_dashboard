@@ -211,7 +211,7 @@
                     chart-id="electricity-consumption"
                     title="Electricity Consumption"
                     unit="KWh"
-                    :value="35000"
+                    :value={{ $electricityConsumption }}
                 ></gauge-chart>
             </div>
             <div class="col-sm-3">

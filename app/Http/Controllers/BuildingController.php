@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Building;
+use App\BuildingDailyElectricityConsumption;
 use App\BuildingSpace;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
@@ -19,6 +20,7 @@ class BuildingController extends Controller
     {
         $availableSpace = $this->availableSpaceChart($building->id)->toArray();
         $unAvailableChart = $this->availableSpaceChart($building->id, false)->toArray();
+        $electricityConsumption = $this->getElectricityCounting($building);
 
         $complaints = [
             'total'           => $building->complaints()->count(),
@@ -29,10 +31,11 @@ class BuildingController extends Controller
         ];
 
         return view('building.show', [
-            'building'         => $building,
-            'availableSpace'   => $availableSpace,
-            'unAvailableChart' => $unAvailableChart,
-            'complaints'       => $complaints,
+            'building'               => $building,
+            'availableSpace'         => $availableSpace,
+            'unAvailableChart'       => $unAvailableChart,
+            'complaints'             => $complaints,
+            'electricityConsumption' => $electricityConsumption,
         ]);
     }
 
@@ -127,5 +130,28 @@ class BuildingController extends Controller
             })
             ->where('status', $status)
             ->count();
+    }
+
+    /**
+     * Get Counting used Electricity on this month
+     * @param \App\Building
+     * @return mixed
+     */
+    protected function getElectricityCounting(Building $building)
+    {
+
+        $total = collect([]);
+
+        $consumptions = $building
+            ->electricityConsumptions()
+            ->whereMonth('date', now()->month)
+            ->whereYear('date', now()->year)
+            ->get();
+
+        $consumptions->each(function ($consumption) use ($total) {
+            $total->add($consumption->totalElectricMeter());
+        });
+
+        return $total->sum();
     }
 }
