@@ -158,7 +158,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-12">
                         <bar-chart-widget
                             title="Space Available"
                             chart-id="space-available"
@@ -169,7 +169,7 @@
                             :height="100"
                         ></bar-chart-widget>
                     </div>
-                    <div class="col-sm-6">
+                    {{-- <div class="col-sm-6">
                         <bar-chart-widget
                             title="Space Booked"
                             chart-id="space-booked"
@@ -179,8 +179,8 @@
                             bar-color="#3498db"
                             :height="100"
                         ></bar-chart-widget>
-                    </div>
-                    <div class="col-sm-6">
+                    </div> --}}
+                    <div class="col-sm-12">
                         <bar-chart-widget
                             title="Space Unavailable"
                             chart-id="space-unavailable"
@@ -191,7 +191,7 @@
                             :height="100"
                         ></bar-chart-widget>
                     </div>
-                    <div class="col-sm-6">
+                    {{-- <div class="col-sm-6">
                         <bar-chart-widget
                             title="Total Users"
                             chart-id="total-users"
@@ -201,7 +201,7 @@
                             bar-color="#9b59b6"
                             :height="100"
                         ></bar-chart-widget>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
