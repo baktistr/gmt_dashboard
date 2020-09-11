@@ -205,18 +205,28 @@ class BuildingController extends Controller
     /**
      * Get Insurance
      * @param App\Building
-     * @return bool
+     * @return string
      */
     public function getInsurance(Building $building)
     {
-        $insurance = $building->insurances()
-            ->where('date_expired' , '>=' , now()->format('Y-m-d'))
+        // Ambil Relasi insurance
+        $insurance = $building->insurances();
+
+        // Cek Tahun Dan Bulan
+        $available = $insurance
+            ->orderBy('date_expired')
             ->first();
 
-        if ($insurance == null) {
-            return false;
+        switch ($available) {
+            case  $available->date_expired->format('Y-m') > now()->format('Y-m'):
+                return 'available';
+                break;
+            case $available->date_expired->format('d') <= now()->format('d'):
+                return 'warning';
+                break;
+            case $available->date_expired->format('Y-m-d') <= now()->format('Y-m-d'):
+                return 'expired';
+                break;
         }
-        
-        return true;
     }
 }

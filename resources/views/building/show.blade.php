@@ -238,9 +238,11 @@
                     </div>
                     <div class="card-body">
                         <p class="text-center mb-2">
-                            @if($insurance)
+                            @if($insurance == 'available')
                                 <i class="cil-check-circle display-1 text-success"></i>
-                            @else
+                            @elseif($insurance == 'warning')
+                                <i class="cil-warning display-1 text-warning"></i>
+                            @else 
                                 <i class="cil-x-circle display-1 text-danger"></i>
                             @endif
                         </p>
