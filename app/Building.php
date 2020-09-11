@@ -165,7 +165,7 @@ class Building extends Model
      */
     public function insurances(): HasMany
     {
-        return $this->hasMany(Insurance::class, 'building_id');
+        return $this->hasMany(BuildingInsurance::class, 'building_id');
     }
 
     /**
@@ -220,4 +220,5 @@ class Building extends Model
     {
         return $this->hasMany(BuildingDieselFuelConsumption::class, 'building_id');
     }
+
 }
