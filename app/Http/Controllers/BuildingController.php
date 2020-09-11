@@ -23,6 +23,8 @@ class BuildingController extends Controller
         $electricityConsumption = $this->getElectricityCounting($building);
         $waterConsumptions      = $this->getWaterConsumptionCounting($building);
         $fuel                   = $this->getFuelCounting($building);
+        $insurance              = $this->getInsurance($building);
+
         $complaints = [
             'total'           => $building->complaints()->count(),
             'totalPending'    => $this->getComplaintsCountByStatus($building, 'pending'),
@@ -39,6 +41,7 @@ class BuildingController extends Controller
             'electricityConsumption' => $electricityConsumption,
             'waterConsumptions'      => $waterConsumptions,
             'fuel'                   => $fuel,
+            'insurance'              => $insurance,
         ]);
     }
 
@@ -157,6 +160,7 @@ class BuildingController extends Controller
 
         return $total->sum();
     }
+
     /**
      * Get Counting used Water Consumption  on this month
      * @param \App\Building
@@ -178,6 +182,11 @@ class BuildingController extends Controller
         return $total->sum();
     }
 
+    /**
+     * Get Counting for Fuel
+     * @param App\Building
+     * @return mixed
+     */
     protected function getFuelCounting(Building $building)
     {
         $total = collect([]);
@@ -192,5 +201,22 @@ class BuildingController extends Controller
         });
 
         return $total->sum();
+    }
+    /**
+     * Get Insurance
+     * @param App\Building
+     * @return bool
+     */
+    public function getInsurance(Building $building)
+    {
+        $insurance = $building->insurances()
+            ->where('date_expired' , '>=' , now()->format('Y-m-d'))
+            ->first();
+
+        if ($insurance == null) {
+            return false;
+        }
+        
+        return true;
     }
 }
