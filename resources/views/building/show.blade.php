@@ -238,7 +238,7 @@
                     </div>
                     <div class="card-body">
                         <p class="text-center mb-2">
-                            @if(true)
+                            @if($insurance)
                                 <i class="cil-check-circle display-1 text-success"></i>
                             @else
                                 <i class="cil-x-circle display-1 text-danger"></i>
