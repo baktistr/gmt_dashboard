@@ -24,7 +24,7 @@ class BuildingController extends Controller
         $waterConsumptions      = $this->getWaterConsumptionCounting($building);
         $fuel                   = $this->getFuelCounting($building);
         $insuranceStatus        = $this->getInsuranceStatus($building);
-
+        
         $complaints = [
             'total'           => $building->complaints()->count(),
             'totalPending'    => $this->getComplaintsCountByStatus($building, 'pending'),
@@ -73,7 +73,7 @@ class BuildingController extends Controller
             ];
         });
 
-        return $last10Months;
+        return $last10Months->reverse();
     }
 
     /**
