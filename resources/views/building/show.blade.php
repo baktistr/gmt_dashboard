@@ -184,7 +184,7 @@
                         <bar-chart-widget
                             title="Space Unavailable"
                             chart-id="space-unavailable"
-                            :labels='@json($spaceUnAvailableData)'
+                            :labels='@json($spaceUnAvailableLabels)'
                             :data='@json($spaceUnAvailableData)'
                             color="primary"
                             bar-color="#e74c3c"
