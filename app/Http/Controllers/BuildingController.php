@@ -23,7 +23,7 @@ class BuildingController extends Controller
         $electricityConsumption = $this->getElectricityCounting($building);
         $waterConsumptions      = $this->getWaterConsumptionCounting($building);
         $fuel                   = $this->getFuelCounting($building);
-        $insurance              = $this->getInsurance($building);
+        $insuranceStatus        = $this->getInsuranceStatus($building);
 
         $complaints = [
             'total'           => $building->complaints()->count(),
@@ -41,7 +41,7 @@ class BuildingController extends Controller
             'electricityConsumption' => $electricityConsumption,
             'waterConsumptions'      => $waterConsumptions,
             'fuel'                   => $fuel,
-            'insurance'              => $insurance,
+            'insurance'              => $insuranceStatus,
         ]);
     }
 
@@ -202,31 +202,29 @@ class BuildingController extends Controller
 
         return $total->sum();
     }
+
     /**
      * Get Insurance
-     * @param App\Building
+     * @param \App\Building $building
      * @return string
      */
-    public function getInsurance(Building $building)
+    public function getInsuranceStatus(Building $building)
     {
-        // Ambil Relasi insurance
-        $insurance = $building->insurances();
+        $insurance = $building->insurances()->latest('date_expired')->first();
 
-        // Cek Tahun Dan Bulan
-        $available = $insurance
-            ->orderBy('date_expired')
-            ->first();
+        if (!$insurance) {
+            return "Insurance is not available";
+        }
 
-        switch ($available) {
-            case  $available->date_expired->format('Y-m') > now()->format('Y-m'):
-                return 'available';
+        switch ($insurance) {
+            case $insurance->date_expired->gt(now()->addMonths(2)):
+                return 'active';
                 break;
-            case $available->date_expired->format('d') <= now()->format('d'):
-                return 'warning';
+            case $insurance->date_expired->gt(now()) && $insurance->date_expired->lt(now()->addMonths(2)):
+                return 'expired soon';
                 break;
-            case $available->date_expired->format('Y-m-d') <= now()->format('Y-m-d'):
+            default:
                 return 'expired';
-                break;
         }
     }
 }
